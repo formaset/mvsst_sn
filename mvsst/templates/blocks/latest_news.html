@@ -1,0 +1,25 @@
+{% load navigation_tags %}
+{% load wagtailimages_tags %}
+<section class="section">
+  <div class="container">
+    <h2 class="section__title">{{ value.title }}</h2>
+    <div class="news-grid">
+      {% latest_news 3 as latest %}
+      {% for item in latest %}
+        <article class="news-card">
+          {% if item.cover_image %}
+            {% image item.cover_image fill-480x300 %}
+          {% endif %}
+          <div class="news-card__content">
+            <div class="news-date">{{ item.date|date:"d.m.Y" }}</div>
+            <h3>{{ item.title }}</h3>
+            {% if item.lead %}<p>{{ item.lead }}</p>{% endif %}
+            <a href="{{ item.url }}">Читать</a>
+          </div>
+        </article>
+      {% empty %}
+        <p>Новостей пока нет.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

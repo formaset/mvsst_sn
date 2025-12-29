@@ -1,0 +1,12 @@
+<section class="section">
+  <div class="container">
+    <div class="values">
+      {% for item in value %}
+        <div class="value-item">
+          <strong>{{ item.title }}</strong>
+          <p>{{ item.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="page-content">
+    <div class="container">
+      <h1 class="section__title">{{ page.title }}</h1>
+      <div class="contacts-grid">
+        <div>
+          {% if page.full_name %}<p><strong>{{ page.full_name }}</strong></p>{% endif %}
+          {% if page.short_name %}<p>{{ page.short_name }}</p>{% endif %}
+          {% if page.phone %}<p><a href="tel:{{ page.phone|cut:' ' }}">{{ page.phone }}</a></p>{% endif %}
+          {% if page.email %}<p><a href="mailto:{{ page.email }}">{{ page.email }}</a></p>{% endif %}
+          {% if page.legal_address %}<p>Юридический адрес: <a href="https://yandex.ru/maps/?text={{ page.legal_address|urlencode }}" target="_blank" rel="noopener">{{ page.legal_address }}</a></p>{% endif %}
+          {% if page.actual_address %}<p>Фактический адрес: <a href="https://yandex.ru/maps/?text={{ page.actual_address|urlencode }}" target="_blank" rel="noopener">{{ page.actual_address }}</a></p>{% endif %}
+          {% if page.schedule %}<p>График работы: {{ page.schedule }}</p>{% endif %}
+        </div>
+        <div>
+          {% if page.map_embed_url %}
+            <iframe src="{{ page.map_embed_url }}" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          {% else %}
+            <p>Карта будет добавлена после публикации.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
