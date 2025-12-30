@@ -1,0 +1,51 @@
+{% load static %}
+{% load navigation_tags %}
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ page.seo_title|default:page.title }}{% endblock %}</title>
+    {% if page.search_description %}
+      <meta name="description" content="{{ page.search_description }}">
+    {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    {% if page and page.get_site %}
+      {% with home_url=page.get_site.root_page.url %}
+    {% else %}
+      {% with home_url="/" %}
+    {% endif %}
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="{{ home_url }}">
+          <span class="logo__mark">МВС</span>
+          <span class="logo__text">АНО «МосводостокСтройТрест»</span>
+        </a>
+        {% main_navigation %}
+      </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="site-footer">
+      <div class="container site-footer__columns">
+        <div>
+          <strong>АНО «МосводостокСтройТрест»</strong>
+          <p>Развитие городской среды и инфраструктуры Москвы.</p>
+        </div>
+        <div>
+          <p>Официальный сайт организации.</p>
+          <p><a href="{{ home_url }}" style="color:#fff;">На главную</a></p>
+        </div>
+      </div>
+    </footer>
+    {% endwith %}
+    <script src="{% static 'js/site.js' %}"></script>
+  </body>
+</html>

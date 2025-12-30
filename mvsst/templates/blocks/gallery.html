@@ -1,0 +1,6 @@
+{% load wagtailimages_tags %}
+<div class="stream-block gallery">
+  {% for image in value %}
+    {% image image fill-320x220 %}
+  {% endfor %}
+</div>

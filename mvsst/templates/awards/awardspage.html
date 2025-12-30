@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+  <section class="page-content">
+    <div class="container">
+      <h1 class="section__title">{{ page.title }}</h1>
+      <div class="awards">
+        {% for award in awards %}
+          <article class="award-card" data-modal-image="{% if award.image %}{{ award.image.file.url }}{% endif %}" data-modal-title="{{ award.title }}">
+            {% if award.image %}
+              {% image award.image fill-320x220 %}
+            {% endif %}
+            <h3>{{ award.title }}</h3>
+            <p>{{ award.description }}</p>
+          </article>
+        {% empty %}
+          <p>Награды пока не добавлены.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <div class="modal">
+    <div class="modal__content">
+      <h3 class="modal__title"></h3>
+      <img src="" alt="">
+    </div>
+  </div>
+{% endblock %}

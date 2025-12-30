@@ -1,0 +1,21 @@
+<nav class="nav">
+  <div class="nav__item">
+    {% if organization %}
+      <a href="{{ organization_children|first|default:organization.url }}">{{ organization.title }}</a>
+      {% if organization_children %}
+        <div class="nav__dropdown">
+          {% for child in organization_children %}
+            <a href="{{ child.url }}">{{ child.title }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+  {% if news %}
+    <a href="{{ news.url }}">Новости</a>
+  {% endif %}
+  <a href="https://hh.ru/employer/11611956" target="_blank" rel="noopener">Вакансии</a>
+  {% if contacts %}
+    <a href="{{ contacts.url }}">Контакты</a>
+  {% endif %}
+</nav>

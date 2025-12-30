@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">{{ page.title }}</h1>
+      <div class="cards">
+        {% for child in page.get_children.live %}
+          <article class="card">
+            <div class="card__title">{{ child.title }}</div>
+            <a href="{{ child.url }}">Перейти</a>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

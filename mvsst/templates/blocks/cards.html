@@ -1,0 +1,7 @@
+<section class="section">
+  <div class="container cards">
+    {% for card in value %}
+      {% include "blocks/card.html" with value=card %}
+    {% endfor %}
+  </div>
+</section>

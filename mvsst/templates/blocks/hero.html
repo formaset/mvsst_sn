@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+<section class="hero">
+  <div class="container hero__inner">
+    <div>
+      <h1 class="hero__title">{{ value.title }}</h1>
+      {% if value.text %}
+        <p class="hero__text">{{ value.text }}</p>
+      {% endif %}
+      {% if value.button_link %}
+        <a class="button" href="{{ value.button_link.url }}">{{ value.button_text|default:"Подробнее" }}</a>
+      {% endif %}
+    </div>
+    {% if value.image %}
+      <div>
+        {% image value.image fill-560x420 %}
+      </div>
+    {% endif %}
+  </div>
+</section>

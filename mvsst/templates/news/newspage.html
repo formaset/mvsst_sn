@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block extra_head %}
+  <meta property="og:title" content="{{ page.title }}">
+  {% if page.lead %}<meta property="og:description" content="{{ page.lead }}">{% endif %}
+  {% if page.cover_image %}<meta property="og:image" content="{{ page.cover_image.file.url }}">{% endif %}
+{% endblock %}
+
+{% block content %}
+  <article class="page-content">
+    <div class="container page-content__narrow">
+      <div class="news-date">{{ page.date|date:"d.m.Y" }}</div>
+      <h1 class="section__title">{{ page.title }}</h1>
+      {% if page.lead %}<p>{{ page.lead }}</p>{% endif %}
+      {% if page.cover_image %}
+        {% image page.cover_image width-900 %}
+      {% endif %}
+      {% for block in page.body %}
+        {% include_block block %}
+      {% endfor %}
+    </div>
+  </article>
+{% endblock %}

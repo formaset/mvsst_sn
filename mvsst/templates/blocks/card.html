@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+<article class="card">
+  {% if value.image %}
+    {% image value.image fill-320x220 %}
+  {% endif %}
+  <div class="card__title">{{ value.title }}</div>
+  {% if value.text %}<p>{{ value.text }}</p>{% endif %}
+  {% if value.link %}<a href="{{ value.link.url }}">Подробнее</a>{% endif %}
+</article>
